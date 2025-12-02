@@ -1,28 +1,24 @@
-import type { Metadata } from 'next';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
-import './globals.css';
+import Container from '@/components/Container';
 
-export const metadata: Metadata = {
-  title: 'Portal - Produtos e Blog',
-  description: 'Portal completo com catálogo de produtos e blog de artigos',
-};
-
-export default function RootLayout({
+export default function ProdutosLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR">
-      <body className="min-h-screen flex flex-col bg-gray-50">
-        <Navigation />
-        <main className="flex-grow">
-          {children}
-        </main>
-        <Footer />
-      </body>
-    </html>
+    <div className="bg-gray-50 min-h-screen py-8">
+      <Container>
+        <header className="mb-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+            Catálogo de Produtos
+          </h1>
+          <p className="text-gray-600">
+            Explore nossa seleção completa de produtos de qualidade
+          </p>
+        </header>
+        {children}
+      </Container>
+    </div>
   );
 }
 

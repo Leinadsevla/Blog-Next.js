@@ -1,83 +1,74 @@
-import Link from 'next/link';
 import Container from '@/components/Container';
-import ProductCard from '@/components/ProductCard';
-import PostCard from '@/components/PostCard';
-import { products } from '@/data/products';
-import { posts } from '@/data/posts';
+import Breadcrumb from '@/components/Breadcrumb';
 
-export default function Home() {
-  // Pegar os 3 produtos mais recentes
-  const recentProducts = [...products]
-    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-    .slice(0, 3);
-
-  // Pegar os 3 posts mais recentes
-  const recentPosts = [...posts]
-    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
-    .slice(0, 3);
-
+export default function SobrePage() {
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-gray-50 min-h-screen py-12">
       <Container>
-        {/* Hero Section */}
-        <section className="py-16 text-center">
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">
-            Bem-vindo ao Portal
-          </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Descubra produtos incríveis e leia artigos interessantes em um só lugar
-          </p>
-          <div className="flex gap-4 justify-center">
-            <Link
-              href="/produtos"
-              className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
-            >
-              Ver Produtos
-            </Link>
-            <Link
-              href="/blog"
-              className="bg-gray-800 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-900 transition"
-            >
-              Ler Blog
-            </Link>
-          </div>
-        </section>
+        <Breadcrumb
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Sobre' }
+          ]}
+        />
 
-        {/* Produtos Recentes */}
-        <section className="py-12">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900">Produtos Recentes</h2>
-            <Link
-              href="/produtos"
-              className="text-blue-600 hover:text-blue-700 font-semibold"
-            >
-              Ver todos →
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {recentProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </section>
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl font-bold text-gray-900 mb-6">Sobre o Portal</h1>
 
-        {/* Posts Recentes */}
-        <section className="py-12">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900">Posts Recentes</h2>
-            <Link
-              href="/blog"
-              className="text-blue-600 hover:text-blue-700 font-semibold"
-            >
-              Ver todos →
-            </Link>
+          <div className="prose prose-lg max-w-none">
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Nossa Missão</h2>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                O Portal foi criado com o objetivo de oferecer uma experiência completa e integrada,
+                combinando um catálogo de produtos de qualidade com conteúdo informativo e relevante
+                através do nosso blog.
+              </p>
+              <p className="text-gray-700 leading-relaxed">
+                Acreditamos que informação e produtos andam juntos, e por isso desenvolvemos uma
+                plataforma que permite aos usuários descobrir produtos incríveis enquanto aprendem
+                sobre os mais diversos assuntos.
+              </p>
+            </section>
+
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">O Que Oferecemos</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-white p-6 rounded-lg shadow-md">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Catálogo de Produtos</h3>
+                  <p className="text-gray-700">
+                    Explore nossa seleção cuidadosa de produtos em diversas categorias,
+                    incluindo eletrônicos, roupas, itens para casa e livros.
+                  </p>
+                </div>
+                <div className="bg-white p-6 rounded-lg shadow-md">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Blog de Artigos</h3>
+                  <p className="text-gray-700">
+                    Leia artigos informativos sobre tecnologia, moda, decoração e muito mais,
+                    escritos por especialistas em cada área.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Nossos Valores</h2>
+              <ul className="list-disc list-inside text-gray-700 space-y-2">
+                <li>Qualidade em todos os produtos e conteúdos oferecidos</li>
+                <li>Transparência e honestidade em todas as interações</li>
+                <li>Inovação constante para melhorar a experiência do usuário</li>
+                <li>Compromisso com a satisfação e o bem-estar dos nossos usuários</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Entre em Contato</h2>
+              <p className="text-gray-700 leading-relaxed">
+                Tem alguma dúvida, sugestão ou feedback? Estamos sempre abertos a ouvir você.
+                Entre em contato conosco através dos canais disponíveis e teremos prazer em ajudar.
+              </p>
+            </section>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {recentPosts.map((post) => (
-              <PostCard key={post.id} post={post} />
-            ))}
-          </div>
-        </section>
+        </div>
       </Container>
     </div>
   );
